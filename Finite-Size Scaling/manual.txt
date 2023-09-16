@@ -1,0 +1,17 @@
+Sketch of the main idea:
+------------------------
+
+The three scripts in this directory were used to obtain the critical exponents gamma and nu of the ferromagnetic Ising Model in two dimensions, with the correct critical temperature given.
+The Idea is to collapse the data (specifically the function chi(beta)) for different lattice sizes N to a single curve (only in the critical region).
+Hereby, the collapse is possible due to the scale invariance in the critical range of the system with a second order phase transition.
+The axes are gradually rescaled by the critical exponents and the linear lattice size L=\sqrt{N} during the gradient descent method. The performance of the collapse is measured by a loss function that is to be found in the "gradient_descend.py" script.
+
+Firstly, it is necessary, to define a list of discrete beta values and a list of different lattice sizes (i.e. number of sites) N.
+For each N, Monte Carlo simulations have to be run for each beta returning a raw_data csv file (for each beta). Putting all these generated files together as the "_reprocessed_data_wolf.csv" file delivers the data foundation for the computations of the three scripts.
+
+- The "combine_csv_reprocessed.py" script can be used to create the "_reprocessed_data_wolf.csv" file
+- Calculate the partition functions ("partition_function.py") for each beta for each N and store them in a csv file ("Z_beta_N=##.csv") as in the dummy file.
+- Use the "gradient_descend.py" to perform the gradient descent and calculate the exponents. Hereby, the program requires all the "Z_beta_N=##.csv" files and the "_reprocessed_data_wolf.csv" that was previously used in the calculation of the partition function.
+- The "interpolating_quantities.py" script can be used to explicitly interpolate a certain quantity Q based on the Monte Carlo simulations, requiring the same files as the "gradient_descend.py".
+
+Further information are to be found either in: M.E.J. Newman and G.T. Barkema. Monte Carlo Methods in Statistical Physics. Clarendon Press Oxford, 1999, p. 210-260 ;
